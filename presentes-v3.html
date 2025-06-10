@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Site do Rafinha</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: QuickStart
+  * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+
+ <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .filtros {
+    margin-bottom: 20px;
+  }
+  select, button {
+    margin-right: 15px;
+    padding: 5px;
+  }
+  select[multiple] {
+    height: 100px;
+  }
+  .item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+  }
+  .item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+  }
+  .item-info {
+    flex-grow: 1;
+  }
+  .item-info h3 {
+    margin: 0 0 5px 0;
+  }
+  .item-info p {
+    margin: 4px 0;
+  }
+  .item-info a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .item-info a:hover {
+    text-decoration: underline;
+  }
+  #filtros-salvos {
+    margin-top: 10px;
+  }
+</style>
+<!-- PapaParse para CSV parsing -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+
+
+
+
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <!--<a href="index.html" class="logo d-flex align-items-center me-auto">
+        <img src="assets/img/logo.png" alt="">
+        <h1 class="sitename">QuickStart</h1>
+      </a>-->
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero" class="active">Home</a></li>
+          <li><a href="index.html#about">Quem sou eu?</a></li>
+          <li class="dropdown"><a href="#"><span>Sugestões de Presentes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Wishlist 1</a></li>
+              <li><a href="#">Wishlist 2</a></li>
+              <li><a href="#">Wishlist 3</a></li>
+              <li><a href="#">Wishlist 4</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.instagram.com/rafa.leitemaia/" target="blank">Redes Sociais</a></li>
+          <li><a href="https://www.instagram.com/tathianna_leite/" target="blank">Contato</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="agenda.html" target="blank"><b>Minha Agenda</b></a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+     <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+<!--        <h1 class="mb-2 mb-lg-0">Agenda</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Agenda</li>
+          </ol>
+        </nav>-->
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Starter Section Section -->
+    <section id="starter-section" class="starter-section section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Sugestões de Presentes</h2>
+        <p>Essa é minha lista de sugestões de presentes para datas comemorativas e confraternizações familiares:</p>
+              <table style="width:60%; border-collapse: collapse; font-family: Arial, sans-serif;" align="center"; border="light-background">
+                <thead>
+                  <tr style="background-color:#f2f2f2;">
+                    <th style="padding: 3px; text-align: center;">Categoria</th>
+                    <th style="padding: 8px; text-align: center;">Descrição</th>
+                  </tr>
+                </thead>
+                      <tbody>
+                        <tr>
+                          <td>📚 Livros</td>
+                          <td>Livros infantis, contos, livros de colorir</td>
+                        </tr>
+                        <tr>
+                          <td>🧸 Brinquedos</td>
+                          <td>Pelúcias, blocos, brinquedos educativos</td>
+                        </tr>
+                        <tr>
+                          <td>🎲 Jogos</td>
+                          <td>Jogos de tabuleiro, quebra-cabeças</td>
+                        </tr>
+                        <tr>
+                          <td>✏️ Material Escolar</td>
+                          <td>Cadernos, lápis, mochilas</td>
+                        </tr>
+                        <tr>
+                          <td>👕 Roupas</td>
+                          <td>Camisetas, vestidos, conjuntos</td>
+                        </tr>
+                        <tr>
+                          <td>👟 Calçados</td>
+                          <td>Tênis, sandálias, chinelos</td>
+                        </tr>
+                        <tr>
+                          <td>🛏️ Decoração para meu quarto</td>
+                          <td>Almofadas, luminárias, adesivos</td>
+                        </tr>
+                        <tr>
+                          <td>🏖️ Utensílios para o Verão</td>
+                          <td>Bóias, bonés, protetor solar</td>
+                        </tr>
+                        <tr>
+                          <td>🧢 Acessórios</td>
+                          <td>Mochilas, bonés, óculos</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+      </div><!-- End Section Title -->
+
+
+
+      <div class="container" data-aos="fade-up" align="center">
+
+
+
+
+
+
+
+
+        <h2>Logo abaixo você pode selecionar a loja virtual de acordo com a categoria de presente:</h2><br>
+
+
+<div class="filtros">
+  <label>
+    Categoria (Ctrl/Cmd + clique para múltipla seleção):
+    <br/>
+    <select id="filtro-categoria" multiple></select>
+  </label>
+
+  <label>
+    Faixa Etária:
+    <br/>
+    <select id="filtro-faixa-etaria">
+      <option value="">Todas</option>
+    </select>
+  </label>
+
+  <button id="salvar-filtro">Salvar filtro atual</button>
+</div>
+
+<div id="filtros-salvos">
+  <strong>Filtros salvos:</strong>
+  <ul id="lista-filtros-salvos"></ul>
+</div>
+
+<div id="lista-itens"></div>
+
+<script>
+  // Configurar aqui o link CSV exportado da sua planilha Google Sheets (publica)
+  // Para obter o CSV: 
+  // Exemplo: https://docs.google.com/spreadsheets/d/ID_DA_PLANILHA/export?format=csv&gid=0
+  const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSoNAMZD83ezHQRPUNYxyJA1Cw04DzTPMBNaxHbx01aSY8isfovu_TE0v5ZIOII3XYUSS1DIeksw2P7/pub?gid=415830822&single=true&output=csv";
+
+  let itens = [];
+
+  // Função para carregar e parsear CSV da planilha pública usando PapaParse
+  async function carregarDadosDaPlanilha() {
+    try {
+      const response = await fetch(urlCSV);
+      if (!response.ok) throw new Error('Erro ao carregar a planilha');
+      const csvText = await response.text();
+
+      const resultado = Papa.parse(csvText, {
+        header: true,
+        skipEmptyLines: true,
+        delimiter: ",",
+      });
+
+      if (resultado.errors.length) {
+        console.warn('Erros no parse CSV:', resultado.errors);
+      }
+      return resultado.data;
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao carregar os dados da planilha. Verifique a URL e o acesso público.');
+      return [];
+    }
+  }
+
+  // Obter categorias únicas (de todos os itens)
+  function getCategorias() {
+    const categorias = new Set();
+    itens.forEach(item => {
+      if (item.Categoria) {
+        // Suporta múltiplas categorias separadas por vírgula
+        item.Categoria.split(',').forEach(cat => {
+          categorias.add(cat.trim());
+        });
+      }
+    });
+    return Array.from(categorias).sort();
+  }
+
+  // Obter faixas etárias únicas
+  function getFaixasEtarias() {
+    const faixas = new Set(itens.map(i => i["Faixa Etária"]).filter(Boolean));
+    return Array.from(faixas).sort((a, b) => {
+      // Ordena faixas numericamente simples (ex: 0-2, 3-5, 6-9, 10+)
+      const extrairNumero = faixa => {
+        const num = faixa.match(/\d+/);
+        return num ? parseInt(num[0], 10) : 1000;
+      };
+      return extrairNumero(a) - extrairNumero(b);
+    });
+  }
+
+  // Popular filtros no DOM
+  function popularFiltros() {
+    const selectCategoria = document.getElementById('filtro-categoria');
+    const selectFaixa = document.getElementById('filtro-faixa-etaria');
+
+    // Limpar opções antigas
+    selectCategoria.innerHTML = '';
+    selectFaixa.innerHTML = '<option value="">Todas</option>';
+
+    getCategorias().forEach(cat => {
+      const option = document.createElement('option');
+      option.value = cat;
+      option.textContent = cat;
+      selectCategoria.appendChild(option);
+    });
+
+    getFaixasEtarias().forEach(faixa => {
+      const option = document.createElement('option');
+      option.value = faixa;
+      option.textContent = faixa;
+      selectFaixa.appendChild(option);
+    });
+  }
+
+  // Renderizar lista filtrada
+  function renderizarLista() {
+    const selectCategoria = document.getElementById('filtro-categoria');
+    const categoriasSelecionadas = Array.from(selectCategoria.selectedOptions).map(o => o.value);
+    const faixaSelecionada = document.getElementById('filtro-faixa-etaria').value;
+    const container = document.getElementById('lista-itens');
+    container.innerHTML = '';
+
+    const itensFiltrados = itens.filter(item => {
+      // Item pode ter várias categorias separadas por vírgula
+      let itemCategorias = [];
+      if (item.Categoria) {
+        itemCategorias = item.Categoria.split(',').map(c => c.trim());
+      }
+      const categoriaOk = categoriasSelecionadas.length > 0
+        ? categoriasSelecionadas.some(cat => itemCategorias.includes(cat))
+        : true;
+
+      const faixaOk = faixaSelecionada ? item["Faixa Etária"] === faixaSelecionada : true;
+
+      return categoriaOk && faixaOk;
+    });
+
+    if (itensFiltrados.length === 0) {
+      container.innerHTML = '<p>Nenhum item encontrado para esses filtros.</p>';
+      return;
+    }
+
+    itensFiltrados.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'item';
+
+      div.innerHTML = `
+        <img src="${item.Imagem || 'https://via.placeholder.com/100?text=Sem+imagem'}" alt="${item.Nome}" />
+        <div class="item-info">
+          <h3><a href="${item.Link}" target="_blank" rel="noopener noreferrer">${item.Nome}</a></h3>
+          <p><strong>Categoria:</strong> ${item.Categoria || 'N/A'}</p>
+          <p><strong>Faixa etária:</strong> ${item["Faixa Etária"] || 'N/A'}</p>
+          <p>${item.Descrição || ''}</p>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  // Salvar filtro atual no localStorage
+  function salvarFiltroAtual() {
+    const categoriasSelecionadas = Array.from(document.getElementById('filtro-categoria').selectedOptions).map(o => o.value);
+    const faixaSelecionada = document.getElementById('filtro-faixa-etaria').value;
+    if (categoriasSelecionadas.length === 0 && !faixaSelecionada) {
+      alert('Selecione ao menos um filtro para salvar.');
+      return;
+    }
+
+    let filtrosSalvos = JSON.parse(localStorage.getItem('filtrosSalvos') || '[]');
+
+    // Evitar duplicados
+    const existe = filtrosSalvos.some(f => {
+      return JSON.stringify(f) === JSON.stringify({categorias: categoriasSelecionadas, faixa: faixaSelecionada});
+    });
+    if (existe) {
+      alert('Este filtro já está salvo.');
+      return;
+    }
+
+    filtrosSalvos.push({categorias: categoriasSelecionadas, faixa: faixaSelecionada});
+    localStorage.setItem('filtrosSalvos', JSON.stringify(filtrosSalvos));
+    popularFiltrosSalvos();
+    alert('Filtro salvo!');
+  }
+
+  // Popular a lista de filtros salvos na interface
+  function popularFiltrosSalvos() {
+    const lista = document.getElementById('lista-filtros-salvos');
+    lista.innerHTML = '';
+    const filtrosSalvos = JSON.parse(localStorage.getItem('filtrosSalvos') || '[]');
+
+    if (filtrosSalvos.length === 0) {
+      lista.innerHTML = '<li><em>Nenhum filtro salvo</em></li>';
+      return;
+    }
+
+    filtrosSalvos.forEach((filtro, idx) => {
+      const li = document.createElement('li');
+      li.style.cursor = 'pointer';
+      li.title = "Clique para aplicar filtro";
+      const textoCategorias = filtro.categorias.length > 0 ? filtro.categorias.join(', ') : 'Todas';
+      const textoFaixa = filtro.faixa || 'Todas';
+      li.textContent = `Categorias: ${textoCategorias} | Faixa Etária: ${textoFaixa}`;
+
+      li.addEventListener('click', () => {
+        aplicarFiltroSalvo(filtro);
+      });
+
+      // Botão para excluir filtro salvo
+      const btnExcluir = document.createElement('button');
+      btnExcluir.textContent = '✖';
+      btnExcluir.style.marginLeft = '10px';
+      btnExcluir.title = 'Excluir filtro salvo';
+      btnExcluir.addEventListener('click', (e) => {
+        e.stopPropagation();
+        excluirFiltroSalvo(idx);
+      });
+
+      li.appendChild(btnExcluir);
+      lista.appendChild(li);
+    });
+  }
+
+  // Aplicar filtro salvo selecionado
+  function aplicarFiltroSalvo(filtro) {
+    const selectCategoria = document.getElementById('filtro-categoria');
+    const selectFaixa = document.getElementById('filtro-faixa-etaria');
+
+    // Limpa seleção
+    for (let i = 0; i < selectCategoria.options.length; i++) {
+      selectCategoria.options[i].selected = false;
+    }
+
+    // Seleciona categorias do filtro salvo
+    filtro.categorias.forEach(cat => {
+      for (let i = 0; i < selectCategoria.options.length; i++) {
+        if (selectCategoria.options[i].value === cat) {
+          selectCategoria.options[i].selected = true;
+        }
+      }
+    });
+
+    // Seleciona faixa etária
+    selectFaixa.value = filtro.faixa || '';
+
+    renderizarLista();
+  }
+
+  // Excluir filtro salvo do localStorage
+  function excluirFiltroSalvo(idx) {
+    let filtrosSalvos = JSON.parse(localStorage.getItem('filtrosSalvos') || '[]');
+    filtrosSalvos.splice(idx, 1);
+    localStorage.setItem('filtrosSalvos', JSON.stringify(filtrosSalvos));
+    popularFiltrosSalvos();
+  }
+
+  // Inicialização da página
+  async function init() {
+    itens = await carregarDadosDaPlanilha();
+    popularFiltros();
+    popularFiltrosSalvos();
+    renderizarLista();
+
+    // Eventos para filtros
+    document.getElementById('filtro-categoria').addEventListener('change', renderizarLista);
+    document.getElementById('filtro-faixa-etaria').addEventListener('change', renderizarLista);
+    document.getElementById('salvar-filtro').addEventListener('click', salvarFiltroAtual);
+  }
+
+  window.onload = init;
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+      </div>
+
+    </section><!-- /Starter Section Section -->
+
+
+    
+
+
+  </main>
+  <footer id="footer" class="footer position-relative light-background">
+
+  
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Rafinha</strong><span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by Mamãe & Titia 
+      </div>
+    </div>
+
+  </footer>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
