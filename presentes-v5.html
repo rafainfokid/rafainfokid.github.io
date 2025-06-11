@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Site do Rafinha</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: QuickStart
+  * Template URL: https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .filtros {
+    margin-bottom: 20px;
+  }
+  select {
+    margin-right: 15px;
+    padding: 5px;
+  }
+  .item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 5px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  .item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+  .item-info {
+    flex-grow: 1;
+  }
+  .item-info h3 {
+    margin: 0 0 5px 0;
+  }
+  .item-info p {
+    margin: 4px 0;
+  }
+  .item-info a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .item-info a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    .item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .item img {
+      margin-bottom: 10px;
+      margin-left: 0;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero" class="active">Home</a></li>
+          <li><a href="index.html#about">Quem sou eu?</a></li>
+          <li class="dropdown"><a href="#"><span>Sugestões de Presentes</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Wishlist 1</a></li>
+              <li><a href="#">Wishlist 2</a></li>
+              <li><a href="#">Wishlist 3</a></li>
+              <li><a href="#">Wishlist 4</a></li>
+            </ul>
+          </li>
+          <li><a href="https://www.instagram.com/rafa.leitemaia/" target="blank">Redes Sociais</a></li>
+          <li><a href="https://www.instagram.com/tathianna_leite/" target="blank">Contato</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="agenda.html" target="blank"><b>Minha Agenda</b></a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+     <!-- Page Title -->
+    <div class="page-title" data-aos="fade">
+      <div class="container d-lg-flex justify-content-between align-items-center">
+
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Starter Section Section -->
+    <section id="starter-section" class="starter-section section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Sugestões de Presentes</h2>
+        <p>Essa é minha lista de sugestões de presentes para datas comemorativas e confraternizações familiares:</p>
+              <table style="width:60%; border-collapse: collapse; font-family: Arial, sans-serif;" align="center"; border="light-background">
+                <thead>
+                  <tr style="background-color:#f2f2f2;">
+                    <th style="padding: 3px; text-align: center;">Categoria</th>
+                    <th style="padding: 8px; text-align: center;">Descrição</th>
+                  </tr>
+                </thead>
+                      <tbody>
+                        <tr>
+                          <td>📚 Livros</td>
+                          <td>Livros infantis, contos, livros de colorir</td>
+                        </tr>
+                        <tr>
+                          <td>🧸 Brinquedos</td>
+                          <td>Pelúcias, blocos, brinquedos educativos</td>
+                        </tr>
+                        <tr>
+                          <td>🎲 Jogos</td>
+                          <td>Jogos de tabuleiro, quebra-cabeças</td>
+                        </tr>
+                        <tr>
+                          <td>✏️ Material Escolar</td>
+                          <td>Cadernos, lápis, mochilas</td>
+                        </tr>
+                        <tr>
+                          <td>👕 Roupas</td>
+                          <td>Camisetas, vestidos, conjuntos</td>
+                        </tr>
+                        <tr>
+                          <td>👟 Calçados</td>
+                          <td>Tênis, sandálias, chinelos</td>
+                        </tr>
+                        <tr>
+                          <td>🛏️ Decoração para meu quarto</td>
+                          <td>Almofadas, luminárias, adesivos</td>
+                        </tr>
+                        <tr>
+                          <td>🏖️ Utensílios para o Verão</td>
+                          <td>Bóias, bonés, protetor solar</td>
+                        </tr>
+                        <tr>
+                          <td>🧢 Acessórios</td>
+                          <td>Mochilas, bonés, óculos</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+
+
+
+
+
+
+
+      </div><!-- End Section Title -->
+
+
+
+      <div class="container" data-aos="fade-up" align="center">
+
+
+
+
+
+
+
+
+        <h2>Logo abaixo você pode selecionar a loja virtual de acordo com a categoria de presente:</h2><br>
+
+
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-6">🎁 Lista de Presentes</h1>
+
+<div class="filtros">
+  <label>
+    <b>Categoria:</b>
+    <select id="filtro-categoria" multiple size="10" style="width: 200px;">
+      <!-- opções preenchidas dinamicamente -->
+    </select>
+  </label>
+
+</div>
+
+<div id="lista-itens"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+// URL pública do CSV gerado pelo Google Sheets (publique como CSV e use aqui)
+const sheet_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoNAMZD83ezHQRPUNYxyJA1Cw04DzTPMBNaxHbx01aSY8isfovu_TE0v5ZIOII3XYUSS1DIeksw2P7/pub?gid=415830822&single=true&output=csv';
+
+let itens = [];
+
+// Função para carregar dados CSV e iniciar a aplicação
+function carregarDados() {
+  Papa.parse(sheet_url, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      itens = results.data.filter(item => item.nome); // filtra linhas vazias
+      popularFiltros();
+      renderizarLista();
+    },
+    error: function(err) {
+      document.getElementById('lista-itens').innerHTML = '<p>Erro ao carregar dados.</p>';
+      console.error(err);
+    }
+  });
+}
+
+// Obter categorias únicas
+function getCategorias() {
+  const categorias = new Set(itens.map(i => i.categoria).filter(c => c));
+  return Array.from(categorias).sort();
+}
+
+
+
+// Popular filtros com múltipla seleção
+function popularFiltros() {
+  const selectCategoria = document.getElementById('filtro-categoria');
+  const selectFaixa = document.getElementById('filtro-faixa-etaria');
+
+  // Limpa opções atuais
+  selectCategoria.innerHTML = '';
+  selectFaixa.innerHTML = '';
+
+  // Adiciona opção para selecionar tudo (em múltipla seleção, essa opção pode ser ignorada)
+  // Popula categorias
+  getCategorias().forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    selectCategoria.appendChild(option);
+  });
+
+
+
+
+// Obter valores selecionados múltiplos
+function getSelecionados(select) {
+  return Array.from(select.selectedOptions).map(opt => opt.value);
+}
+
+// Renderizar lista filtrada
+function renderizarLista() {
+  const categoriasSelecionadas = getSelecionados(document.getElementById('filtro-categoria'));
+
+  const container = document.getElementById('lista-itens');
+  container.innerHTML = '';
+
+  const itensFiltrados = itens.filter(item => {
+    const categoriaOk = categoriasSelecionadas.length === 0 || categoriasSelecionadas.includes(item.categoria);
+
+    return categoriaOk;
+  });
+
+  if (itensFiltrados.length === 0) {
+    container.innerHTML = '<p>Nenhum item encontrado para esses filtros.</p>';
+    return;
+  }
+
+  itensFiltrados.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'item';
+
+    div.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" />
+      <div class="item-info">
+        <h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.nome}</a></h3>
+        <p><strong>Categoria:</strong> ${item.categoria} / ${item.subcategoria}</p>
+        <p><strong>Faixa etária:</strong> ${item.faixa_etaria}</p>
+        <p>${item.descricao}</p>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Eventos para atualizar lista ao mudar filtros
+document.getElementById('filtro-categoria').addEventListener('change', renderizarLista);
+
+// Inicializa
+carregarDados();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+      </div>
+
+    </section><!-- /Starter Section Section -->
+
+
+    
+
+
+  </main>
+  <footer id="footer" class="footer position-relative light-background">
+
+  
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Rafinha</strong><span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by Mamãe & Titia 
+      </div>
+    </div>
+
+  </footer>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
