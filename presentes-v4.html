@@ -219,142 +219,139 @@
 <div class="max-w-4xl mx-auto">
     <h1 class="text-3xl font-bold text-center mb-6">🎁 Lista de Presentes</h1>
 
-    <div class="flex flex-wrap gap-2 justify-center mb-4" id="categoryFilter"></div>
+<div class="filtros">
+  <label>
+    Categoria:
+    <select id="filtro-categoria" multiple size="5" style="width: 200px;">
+      <!-- opções preenchidas dinamicamente -->
+    </select>
+  </label>
+  <label>
+    Faixa Etária:
+    <select id="filtro-faixa-etaria" multiple size="3" style="width: 150px;">
+      <!-- opções preenchidas dinamicamente -->
+    </select>
+  </label>
+</div>
 
-    <div class="flex justify-center mb-4">
-      <button onclick="saveFilters()" class="px-4 py-2 bg-green-600 text-white rounded">Salvar Filtros Favoritos</button>
-      <button onclick="loadFilters()" class="ml-2 px-4 py-2 bg-blue-600 text-white rounded">Carregar Favoritos</button>
-    </div>
+<div id="lista-itens"></div>
 
-    <div id="presentes" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+// URL pública do CSV gerado pelo Google Sheets (publique como CSV e use aqui)
+const sheet_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSoNAMZD83ezHQRPUNYxyJA1Cw04DzTPMBNaxHbx01aSY8isfovu_TE0v5ZIOII3XYUSS1DIeksw2P7/pub?gid=415830822&single=true&output=csv';
 
-  <script>
-    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSoNAMZD83ezHQRPUNYxyJA1Cw04DzTPMBNaxHbx01aSY8isfovu_TE0v5ZIOII3XYUSS1DIeksw2P7/pub?gid=415830822&single=true&output=csv";
-    let allData = [];
-    let selectedCategories = new Set();
+let itens = [];
 
-    async function fetchData() {
-      const res = await fetch(SHEET_URL);
-      const text = await res.text();
-      const rows = text.trim().split("\n").map(r => r.split(","));
-      const headers = rows[0].map(h => h.trim().toLowerCase());
-      const data = rows.slice(1).map(r => {
-        const obj = {};
-        headers.forEach((h, i) => {
-          obj[h] = r[i] ? r[i].trim() : "";
-        });
-        return obj;
-      });
-
-      allData = data;
-      generateFilters(data);
-      render(data);
+// Função para carregar dados CSV e iniciar a aplicação
+function carregarDados() {
+  Papa.parse(sheet_url, {
+    download: true,
+    header: true,
+    complete: function(results) {
+      itens = results.data.filter(item => item.nome); // filtra linhas vazias
+      popularFiltros();
+      renderizarLista();
+    },
+    error: function(err) {
+      document.getElementById('lista-itens').innerHTML = '<p>Erro ao carregar dados.</p>';
+      console.error(err);
     }
+  });
+}
 
-    function generateFilters(data) {
-      const categories = [...new Set(data.map(item => item.categoria))].filter(c => c);
-      const container = document.getElementById("categoryFilter");
-      container.innerHTML = "";
+// Obter categorias únicas
+function getCategorias() {
+  const categorias = new Set(itens.map(i => i.categoria).filter(c => c));
+  return Array.from(categorias).sort();
+}
 
-      categories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.textContent = cat;
-        btn.className = "px-3 py-1 border rounded hover:bg-blue-100";
-        btn.onclick = () => {
-          if (selectedCategories.has(cat)) {
-            selectedCategories.delete(cat);
-            btn.classList.remove("selected");
-          } else {
-            selectedCategories.add(cat);
-            btn.classList.add("selected");
-          }
-          filter();
-        };
-        container.appendChild(btn);
-      });
-    }
+// Obter faixas etárias únicas
+function getFaixasEtarias() {
+  const faixas = new Set(itens.map(i => i.faixa_etaria).filter(f => f));
+  return Array.from(faixas).sort((a, b) => {
+    const extrairNumero = faixa => {
+      const num = faixa.match(/\d+/);
+      return num ? parseInt(num[0], 10) : 1000;
+    };
+    return extrairNumero(a) - extrairNumero(b);
+  });
+}
 
-    function filter() {
-      const filtered = selectedCategories.size === 0
-        ? allData
-        : allData.filter(item => selectedCategories.has(item.categoria));
-      render(filtered);
-    }
+// Popular filtros com múltipla seleção
+function popularFiltros() {
+  const selectCategoria = document.getElementById('filtro-categoria');
+  const selectFaixa = document.getElementById('filtro-faixa-etaria');
 
-    function render(data) {
-      const container = document.getElementById("presentes");
-      container.innerHTML = "";
-      data.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "bg-white rounded shadow p-4";
+  // Limpa opções atuais
+  selectCategoria.innerHTML = '';
+  selectFaixa.innerHTML = '';
 
-        const image = document.createElement("img");
-        image.src = item.imagem || "https://via.placeholder.com/300x200?text=Sem+Imagem";
-        image.alt = item.nome;
-        image.className = "w-full h-48 object-cover rounded mb-2";
+  // Adiciona opção para selecionar tudo (em múltipla seleção, essa opção pode ser ignorada)
+  // Popula categorias
+  getCategorias().forEach(cat => {
+    const option = document.createElement('option');
+    option.value = cat;
+    option.textContent = cat;
+    selectCategoria.appendChild(option);
+  });
 
-        const title = document.createElement("h2");
-        title.className = "text-xl font-bold";
+  // Popula faixas etárias
+  getFaixasEtarias().forEach(faixa => {
+    const option = document.createElement('option');
+    option.value = faixa;
+    option.textContent = faixa;
+    selectFaixa.appendChild(option);
+  });
+}
 
-        if(item.link){
-          const link = document.createElement("a");
-          link.href = item.link;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.textContent = item.nome;
-          link.className = "link-item";
-          title.appendChild(link);
-        } else {
-          title.textContent = item.nome;
-        }
+// Obter valores selecionados múltiplos
+function getSelecionados(select) {
+  return Array.from(select.selectedOptions).map(opt => opt.value);
+}
 
-        const desc = document.createElement("p");
-        desc.textContent = item.descricao;
+// Renderizar lista filtrada
+function renderizarLista() {
+  const categoriasSelecionadas = getSelecionados(document.getElementById('filtro-categoria'));
+  const faixasSelecionadas = getSelecionados(document.getElementById('filtro-faixa-etaria'));
+  const container = document.getElementById('lista-itens');
+  container.innerHTML = '';
 
-        const cat = document.createElement("p");
-        cat.innerHTML = `<strong>Categoria:</strong> ${item.categoria}`;
+  const itensFiltrados = itens.filter(item => {
+    const categoriaOk = categoriasSelecionadas.length === 0 || categoriasSelecionadas.includes(item.categoria);
+    const faixaOk = faixasSelecionadas.length === 0 || faixasSelecionadas.includes(item.faixa_etaria);
+    return categoriaOk && faixaOk;
+  });
 
-        const subcat = document.createElement("p");
-        subcat.innerHTML = `<strong>Subcategoria:</strong> ${item.subcategoria || "-"}`;
+  if (itensFiltrados.length === 0) {
+    container.innerHTML = '<p>Nenhum item encontrado para esses filtros.</p>';
+    return;
+  }
 
-        const faixa = document.createElement("p");
-        faixa.innerHTML = `<strong>Faixa Etária:</strong> ${item.faixa_etaria || "-"}`;
+  itensFiltrados.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'item';
 
-        card.appendChild(image);
-        card.appendChild(title);
-        card.appendChild(desc);
-        card.appendChild(cat);
-        card.appendChild(subcat);
-        card.appendChild(faixa);
+    div.innerHTML = `
+      <img src="${item.imagem}" alt="${item.nome}" />
+      <div class="item-info">
+        <h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.nome}</a></h3>
+        <p><strong>Categoria:</strong> ${item.categoria} / ${item.subcategoria}</p>
+        <p><strong>Faixa etária:</strong> ${item.faixa_etaria}</p>
+        <p>${item.descricao}</p>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
 
-        container.appendChild(card);
-      });
-    }
+// Eventos para atualizar lista ao mudar filtros
+document.getElementById('filtro-categoria').addEventListener('change', renderizarLista);
+document.getElementById('filtro-faixa-etaria').addEventListener('change', renderizarLista);
 
-    function saveFilters() {
-      localStorage.setItem("filtrosFavoritos", JSON.stringify([...selectedCategories]));
-      alert("Filtros salvos!");
-    }
-
-    function loadFilters() {
-      const saved = JSON.parse(localStorage.getItem("filtrosFavoritos") || "[]");
-      const buttons = document.querySelectorAll("#categoryFilter button");
-      selectedCategories = new Set(saved);
-
-      buttons.forEach(btn => {
-        if (selectedCategories.has(btn.textContent)) {
-          btn.classList.add("selected");
-        } else {
-          btn.classList.remove("selected");
-        }
-      });
-      filter();
-    }
-
-    fetchData();
-  </script>
-
+// Inicializa
+carregarDados();
+</script>
 
 
 
